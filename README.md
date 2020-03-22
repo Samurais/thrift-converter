@@ -1,45 +1,35 @@
-thrift_converter
-============
+# thrift and json
 
 A python implemented tool for converting between json and thrift.
 
-
-Install
-------------
+## Install
 
 ```bash
-pip install thrift-converter
+pip install tnj
 ```
 
+## Why build this tool:
 
-Why build this tool:
-------------
-
-1. Class in thrift gen-py use `thrift_spec()` to deserialize, but the `Enum` object is simply treated as `I32`, while in json, it's stored as string of name.   
+1. Class in thrift gen-py use `thrift_spec()` to deserialize, but the `Enum` object is simply treated as `I32`, while in json, it's stored as string of name.
 2. `set` is not json serializable in standard json, we can treat `{'a', 'b', ..}` as `{None: ['a', 'b', ...]}` for distinction.
 
+## How to:
 
-How to:
------------
 1. Parsing thrift ast by [ptsd](https://github.com/wickman/ptsd)
 2. Deserializing thrift object by walking through ast recursively.
 
+## Todo:
 
-Todo:
------------
 - [ ] learn `ply` from [ptsd](https://github.com/wickman/ptsd)
 
+## Others
 
-Others
------------
+- [introspection-of-thrift-enums-in-python](https://grokbase.com/t/thrift/user/13614a6xd1/introspection-of-thrift-enums-in-python) discussed end with waiting for thrift upgrade(support for python enums)
+- [thrift_json_decoder in twitter.common](https://github.com/twitter/commons/blob/master/src/python/twitter/thrift/text/thrift_json_decoder.py) can't handle with Enum
+- [thrift_json_convertor based on thriftpy](https://github.com/xuanyuanking/thrift_json_convertor) too heavy
 
-* [introspection-of-thrift-enums-in-python](https://grokbase.com/t/thrift/user/13614a6xd1/introspection-of-thrift-enums-in-python) discussed end with waiting for thrift upgrade(support for python enums)
-* [thrift_json_decoder in twitter.common](https://github.com/twitter/commons/blob/master/src/python/twitter/thrift/text/thrift_json_decoder.py) can't handle with Enum
-* [thrift_json_convertor based on thriftpy](https://github.com/xuanyuanking/thrift_json_convertor) too heavy
+## Usage
 
-
-Usage
-------------
 example: [demo](https://github.com/shiyuan/thrift_converter/blob/master/test/)
 
 ```py
@@ -63,4 +53,3 @@ obj = json2thrift(json.loads(js_str), object_name)
 # Group(id=-1, worker_map={999: Worker(id=999, tasks=[Task(id=727, status=0, action=888, valid=True, msgs={'msg'})])})
 
 ```
-

@@ -1,9 +1,41 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# ===============================================================================
+#
+# Copyright (c) 2020 <> All Rights Reserved
+#
+#
+# File: /Users/hain/chatopera/chatopera.xinli/alchemist/app.py
+# Author: Hai Liang Wang
+# Date: 2020-03-19:10:10:06
+#
+# ===============================================================================
+
+"""
+   
+"""
+__copyright__ = "Copyright (c) 2020 . All Rights Reserved"
+__author__ = "Hai Liang Wang"
+__date__ = "2020-03-19:10:10:06"
+
+import os
+import sys
+
+
+curdir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(curdir)
+
+if sys.version_info[0] < 3:
+    raise RuntimeError("Must be using Python 3")
+else:
+    unicode = str
+
 import sys
 sys.path.append('gen-py')
 sys.path.append('../')
 
 import json
-from thrift_converter import JsonThriftConverter, ThriftJsonConverter
+from tnj import JsonThriftConverter, ThriftJsonConverter
 
 thrift_file = 'demo.thrift'
 json2thrift = JsonThriftConverter(thrift_file).convert
